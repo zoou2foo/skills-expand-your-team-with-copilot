@@ -41,7 +41,8 @@ initial_activities = {
             "end_time": "16:45"
         },
         "max_participants": 12,
-        "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
+        "participants": ["michael@mergington.edu", "daniel@mergington.edu"],
+        "difficulty": "Beginner"
     },
     "Programming Class": {
         "description": "Learn programming fundamentals and build software projects",
@@ -52,7 +53,8 @@ initial_activities = {
             "end_time": "08:00"
         },
         "max_participants": 20,
-        "participants": ["emma@mergington.edu", "sophia@mergington.edu"]
+        "participants": ["emma@mergington.edu", "sophia@mergington.edu"],
+        "difficulty": "Beginner"
     },
     "Morning Fitness": {
         "description": "Early morning physical training and exercises",
@@ -74,7 +76,8 @@ initial_activities = {
             "end_time": "17:30"
         },
         "max_participants": 22,
-        "participants": ["liam@mergington.edu", "noah@mergington.edu"]
+        "participants": ["liam@mergington.edu", "noah@mergington.edu"],
+        "difficulty": "Intermediate"
     },
     "Basketball Team": {
         "description": "Practice and compete in basketball tournaments",
@@ -85,7 +88,8 @@ initial_activities = {
             "end_time": "17:00"
         },
         "max_participants": 15,
-        "participants": ["ava@mergington.edu", "mia@mergington.edu"]
+        "participants": ["ava@mergington.edu", "mia@mergington.edu"],
+        "difficulty": "Intermediate"
     },
     "Art Club": {
         "description": "Explore various art techniques and create masterpieces",
@@ -118,7 +122,8 @@ initial_activities = {
             "end_time": "08:00"
         },
         "max_participants": 10,
-        "participants": ["james@mergington.edu", "benjamin@mergington.edu"]
+        "participants": ["james@mergington.edu", "benjamin@mergington.edu"],
+        "difficulty": "Advanced"
     },
     "Debate Team": {
         "description": "Develop public speaking and argumentation skills",
@@ -129,7 +134,8 @@ initial_activities = {
             "end_time": "17:30"
         },
         "max_participants": 12,
-        "participants": ["charlotte@mergington.edu", "amelia@mergington.edu"]
+        "participants": ["charlotte@mergington.edu", "amelia@mergington.edu"],
+        "difficulty": "Advanced"
     },
     "Weekend Robotics Workshop": {
         "description": "Build and program robots in our state-of-the-art workshop",
@@ -140,7 +146,8 @@ initial_activities = {
             "end_time": "14:00"
         },
         "max_participants": 15,
-        "participants": ["ethan@mergington.edu", "oliver@mergington.edu"]
+        "participants": ["ethan@mergington.edu", "oliver@mergington.edu"],
+        "difficulty": "Advanced"
     },
     "Science Olympiad": {
         "description": "Weekend science competition preparation for regional and state events",
