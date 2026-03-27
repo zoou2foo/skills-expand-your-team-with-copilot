@@ -470,6 +470,9 @@ document.addEventListener("DOMContentLoaded", () => {
     Object.entries(filteredActivities).forEach(([name, details]) => {
       renderActivityCard(name, details);
     });
+
+    // Highlight any activity linked via URL parameter
+    highlightLinkedActivity();
   }
 
   // Function to render a single activity card
@@ -568,6 +571,12 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `
         }
+        <div class="share-buttons">
+          <span class="share-label">Share:</span>
+          <a class="share-btn share-twitter" href="#" data-activity="${name}" title="Share on X (Twitter)" aria-label="Share on X (Twitter)"><span aria-hidden="true">𝕏</span></a>
+          <a class="share-btn share-whatsapp" href="#" data-activity="${name}" title="Share on WhatsApp" aria-label="Share on WhatsApp"><span aria-hidden="true">💬</span></a>
+          <button class="share-btn share-copy" data-activity="${name}" title="Copy link" aria-label="Copy link to activity"><span aria-hidden="true">🔗</span></button>
+        </div>
       </div>
     `;
 
@@ -587,7 +596,53 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    // Add share button event listeners
+    const shareUrl = `${location.origin}${location.pathname}?activity=${encodeURIComponent(name)}`;
+    const shareText = `Check out "${name}" - ${details.description}`;
+
+    const twitterBtn = activityCard.querySelector(".share-twitter");
+    twitterBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+    twitterBtn.target = "_blank";
+    twitterBtn.rel = "noopener noreferrer";
+
+    const whatsappBtn = activityCard.querySelector(".share-whatsapp");
+    whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
+    whatsappBtn.target = "_blank";
+    whatsappBtn.rel = "noopener noreferrer";
+
+    const copyBtn = activityCard.querySelector(".share-copy");
+    const copyIcon = copyBtn.querySelector("span");
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        copyIcon.textContent = "✔";
+        copyBtn.title = "Link copied!";
+        copyBtn.setAttribute("aria-label", "Link copied!");
+        setTimeout(() => {
+          copyIcon.textContent = "🔗";
+          copyBtn.title = "Copy link";
+          copyBtn.setAttribute("aria-label", "Copy link to activity");
+        }, 2000);
+      }).catch(() => {
+        copyBtn.title = "Could not copy link";
+      });
+    });
+
     activitiesList.appendChild(activityCard);
+  }
+
+  // Highlight activity linked via ?activity= URL parameter
+  function highlightLinkedActivity() {
+    const params = new URLSearchParams(location.search);
+    const linked = params.get("activity");
+    if (!linked) return;
+    const cards = activitiesList.querySelectorAll(".activity-card");
+    cards.forEach((card) => {
+      const title = card.querySelector("h4");
+      if (title && title.textContent.trim() === linked.trim()) {
+        card.classList.add("activity-highlighted");
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
   }
 
   // Event listeners for search and filter
